@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Hero.module.css";
+import headphones from "../../assets/hero_headphones.png"; // ✅ correct import
 
 function Hero() {
   return (
@@ -10,7 +11,7 @@ function Hero() {
       </div>
       <div>
         <img
-          src={require("../../assets/hero_headphones.png")}
+          src={headphones}
           width={212}
           alt="headphones"
         />

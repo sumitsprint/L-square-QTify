@@ -1,9 +1,17 @@
+/* src/components/Navbar/Navbar.module.css */
 .navbar {
   background-color: var(--color-primary);
   height: 74px;
-  width: 100vw;
-  padding: 0px 32px;
+  width: 100%;
+  padding: 0 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* keep navbar fixed at top visually if you want
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  */
 }
+
+/* For fine control, internal layout inside Navbar.jsx should already arrange children */

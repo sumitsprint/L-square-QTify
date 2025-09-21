@@ -1,0 +1,23 @@
+/* src/components/Button/Button.module.css */
+.btn {
+  background-color: var(--color-black);    /* black background */
+  color: var(--color-primary);              /* green text */
+  font-family: var(--font-family);          /* Poppins from index.css */
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 20px;                      /* visible rounded corners */
+  border: 2px solid transparent;
+  cursor: pointer;
+  outline: none;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+  text-transform: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
