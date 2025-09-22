@@ -1,0 +1,37 @@
+/* src/components/Section/TopAlbumsSection.module.css */
+.section {
+  padding: 24px 0;
+  color: var(--color-white);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.collapseBtn {
+  background: transparent;
+  color: var(--color-primary);
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+.loading, .error {
+  padding: 20px;
+  color: #ddd;
+}
