@@ -2,7 +2,7 @@
 import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
-// import mockAlbums from "./data/mockAlbums";
+import NewAlbumsSection from "./components/Section/NewAlbumsSection";
 import TopAlbumsSection from "./components/Section/TopAlbumsSection";
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
         <Hero />
         {/* future: album carousels, songs, FAQ, player */}
          <TopAlbumsSection />
+          <NewAlbumsSection />
       </main>
     </>
   );

@@ -1,0 +1,72 @@
+/* src/components/Carousel/Carousel.module.css */
+.carouselWrap {
+  position: relative;
+  padding: 6px 0;
+}
+
+.swiper {
+  padding-bottom: 8px;
+}
+
+/* slides center the child */
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* nav (button) base */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  cursor: pointer;
+  transition: opacity 120ms ease, transform 80ms ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* left / right positions */
+.prev {
+  left: -12px;
+}
+.next {
+  right: -12px;
+}
+
+/* image inside button */
+.nav img {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* disabled state: hide and make non-interactive */
+.disabled {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.9);
+}
+
+/* small tweak for smaller screens to keep buttons inside viewport */
+@media (max-width: 600px) {
+  .prev {
+    left: 6px;
+  }
+  .next {
+    right: 6px;
+  }
+  .nav {
+    width: 40px;
+    height: 40px;
+  }
+}

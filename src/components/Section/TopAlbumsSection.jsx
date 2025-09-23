@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import styles from "./TopAlbumsSection.module.css";
 import AlbumCard from "../Card/AlbumCard";
 import { fetchTopAlbums } from "../../services/api";
-import axios from "axios";
+// import axios from "axios";
+import Carousel from "../Carousel/Carousel";
 
 export default function TopAlbumsSection() {
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+   const [showAll, setShowAll] = useState(false); // false = grid, true = carousel (per assignment collapse behavior)
 
   useEffect(() => {
     let mounted = true;
@@ -46,16 +48,28 @@ export default function TopAlbumsSection() {
     <section className={styles.section} aria-labelledby="top-albums-heading">
       <div className={styles.header}>
         <h2 id="top-albums-heading">Top Albums</h2>
-        <button className={styles.collapseBtn} aria-pressed="false">
-          Collapse
+         <button
+          className={styles.collapseBtn}
+          onClick={() => setShowAll((s) => !s)}
+          aria-expanded={showAll}
+        >
+          {showAll ? "Show All" : "Collapse"}
         </button>
       </div>
 
-      <div className={styles.grid}>
-        {albums.map((a) => (
-          <AlbumCard key={a.id} album={a} />
-        ))}
-      </div>
+      {!showAll ? (
+        <div className={styles.grid}>
+          {albums.map((a) => (
+            <AlbumCard key={a.id} album={a} />
+          ))}
+        </div>
+      ) : (
+        <Carousel>
+          {albums.map((a) => (
+            <AlbumCard key={a.id} album={a} />
+          ))}
+        </Carousel>
+      )}
     </section>
   );
 }
