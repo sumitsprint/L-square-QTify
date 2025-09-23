@@ -1,19 +1,19 @@
-// src/App.jsx
-import React from "react";
+import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
-import NewAlbumsSection from "./components/Section/NewAlbumsSection";
 import TopAlbumsSection from "./components/Section/TopAlbumsSection";
+import NewAlbumsSection from "./components/Section/NewAlbumsSection";
+import SongsSection from "./components/Section/SongsSection"; // ✅ FIXED
 
 function App() {
   return (
     <>
-     <Navbar searchData={[]} />
+      <Navbar />
       <main style={{ paddingTop: 24 }}>
         <Hero />
-        {/* future: album carousels, songs, FAQ, player */}
-         <TopAlbumsSection />
-          <NewAlbumsSection />
+        <TopAlbumsSection />
+        <NewAlbumsSection />
+        <SongsSection />  {/* ✅ Now React knows this */}
       </main>
     </>
   );
