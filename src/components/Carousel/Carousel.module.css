@@ -1,63 +1,77 @@
 /* src/components/Carousel/Carousel.module.css */
+
+/* wrapper used by outer component if needed */
 .carouselWrap {
   position: relative;
-  padding: 6px 0;
+  width: 100%;
+  padding: 8px 0;
 }
 
+/* ensure swiper area has space for nav buttons */
 .swiper {
   padding-bottom: 8px;
 }
 
-/* slides center the child */
+/* each slide centers its child (AlbumCard) */
 .slide {
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
-/* nav (button) base */
+/* NAV BUTTON BASE */
 .nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 40;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: transparent;
-  border: none;
-  padding: 0;
+  background: rgba(0, 0, 0, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 30;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  transition: opacity 120ms ease, transform 80ms ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transition: transform 120ms ease, opacity 120ms ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
 }
 
-/* left / right positions */
+/* left / right positions; tweak offsets to match design */
 .prev {
-  left: -12px;
+  left: -22px;
 }
+
 .next {
-  right: -12px;
+  right: -22px;
 }
 
-/* image inside button */
+/* image/icon inside nav */
 .nav img {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   display: block;
+  object-fit: contain;
+  filter: brightness(1) saturate(0); /* make icon neutral; adjust if you want colored icons */
 }
 
-/* disabled state: hide and make non-interactive */
-.disabled {
+/* hover feedback */
+.nav:hover {
+  transform: translateY(-50%) scale(1.02);
+  opacity: 0.95;
+}
+
+/* disabled state: hidden visually and non-interactive */
+.disabled,
+.nav[disabled] {
   opacity: 0;
   pointer-events: none;
   transform: translateY(-50%) scale(0.9);
 }
 
-/* small tweak for smaller screens to keep buttons inside viewport */
+/* On very small screens keep nav inside viewport */
 @media (max-width: 600px) {
   .prev {
     left: 6px;
@@ -69,4 +83,15 @@
     width: 40px;
     height: 40px;
   }
+  .nav img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* If you used the carouselWrap class in JSX, ensure slides don't get clipped */
+.carouselWrap,
+.swiper,
+.slide {
+  box-sizing: border-box;
 }
