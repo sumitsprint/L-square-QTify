@@ -1,9 +1,9 @@
 // src/components/Section/NewAlbumsSection.jsx
 import React, { useEffect, useState } from "react";
-import styles from "./TopAlbumsSection.module.css"; // reuse same styles
+import styles from "./TopAlbumsSection.module.css"; // reuse same CSS
 import AlbumCard from "../Card/AlbumCard";
-import axios from "axios";
 import Carousel from "../Carousel/Carousel";
+import axios from "axios";
 
 export default function NewAlbumsSection() {
   const [albums, setAlbums] = useState([]);
@@ -13,23 +13,28 @@ export default function NewAlbumsSection() {
 
   useEffect(() => {
     let mounted = true;
-    (async function load() {
+    async function load() {
       try {
         setLoading(true);
         const res = await axios.get("https://qtify-backend-labs.crio.do/albums/new");
-        if (mounted) setAlbums(res.data || []);
+        if (mounted) {
+          setAlbums(res.data || []);
+        }
       } catch (err) {
-        console.error(err);
+        console.error("Failed to load new albums", err);
         if (mounted) setError(err);
       } finally {
         if (mounted) setLoading(false);
       }
-    })();
-    return () => (mounted = false);
+    }
+    load();
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   if (loading) return <div className={styles.loading}>Loading new albums…</div>;
-  if (error) return <div className={styles.error}>Could not load albums.</div>;
+  if (error) return <div className={styles.error}>Failed to load new albums.</div>;
 
   return (
     <section className={styles.section} aria-labelledby="new-albums-heading">
@@ -40,11 +45,11 @@ export default function NewAlbumsSection() {
           onClick={() => setShowAll((s) => !s)}
           aria-expanded={showAll}
         >
-          {showAll ? "Show All" : "Collapse"}
+          {showAll ? "Collapse" : "Show All"}
         </button>
       </div>
 
-      {!showAll ? (
+      {showAll ? (
         <div className={styles.grid}>
           {albums.map((a) => (
             <AlbumCard key={a.id} album={a} />
